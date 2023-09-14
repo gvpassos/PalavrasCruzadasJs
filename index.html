@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Palavras Cruzadas</title>
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/tail.css">
+    
+    </head>
+    <body>
+        <script type="module">
+            import {Criar, atribuirLetra , onInputPress} from "./main.js"
+            import { Game } from "./game.js"
+           
+            window.onload = function(){
+                document.getElementById("jogo").appendChild(Criar(Game.x,Game.y));
+                atribuirLetra(Game);
+            }
+            
+            
+           
+                        
+        </script>
+
+<div id="jogo" class="w-96 h-96 m-2" ></div>
+
+</body>
+</html>
