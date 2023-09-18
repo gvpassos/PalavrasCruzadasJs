@@ -2,7 +2,7 @@
 import { SalvarLocal, CarregarLocal , getbanco, fimGame,buscarRespostaBanco } from "https://gvpassos.github.io/PalavrasCruzadasJs/banco.js";
 import { cronometro, iniciarContagem, pararContagem} from "https://gvpassos.github.io/PalavrasCruzadasJs/cronometro.js";
 
-export function Criar(){
+export function Criar(Game){
     let table = document.createElement("table");
     let tbody = document.createElement("tbody");
     table.appendChild(tbody);
@@ -25,7 +25,7 @@ export function Criar(){
 
             input.addEventListener("keyup", (event) => {
                 if(event.target.value.length > 1) event.target.value = event.target.value.substring(0,  1 )
-                onInputPress(event.target.id, event.key);
+                onInputPress(event.target.id, Game);
                 if(cronometro == null) iniciarContagem();
               });
             
@@ -40,7 +40,7 @@ export function Criar(){
     return table;
 }
 
-export function CriarIntrucoes(){
+export function CriarIntrucoes(Game){
     let instrucoes = document.createElement("div");
     instrucoes.classList.add("w-auto", "h-auto","p-4",);
     Game.repostas.forEach(element => {
@@ -64,51 +64,51 @@ export function CriarIntrucoes(){
     return instrucoes;
 }
 
-export function atribuirLetra(game){
-    for (let i = 0; i < game.x; i++) {
-        for (let j = 0; j < game.y; j++) {
+export function atribuirLetrsa(Game){
+    for (let i = 0; i < Game.x; i++) {
+        for (let j = 0; j < Game.y; j++) {
             let input =   document.getElementById(i+""+j);
             let td =   document.getElementById("cell"+i+j);
 
             input.value = " "; 
-            if(game.letras[i+""+j] == " ")  {                       /// caracteres 'espaço' celula vazia
+            if(Game.letras[i+""+j] == " ")  {                       /// caracteres 'espaço' celula vazia
                 if(getbanco(`${i}${j}`)){
                     input.value = CarregarLocal(`${i}${j}`);
                     input.classList.add("text-green-500");
                     input.disabled = true;
                 }            
             }
-            else if(game.letras[i+""+j] == ".") {                   // caracteres '.' celula nao preenchivel 
+            else if(Game.letras[i+""+j] == ".") {                   // caracteres '.' celula nao preenchivel 
                 input.classList.add("text-white","bg-slate-900","z-10");
                 input.disabled = true;
             }
 
-            else if(!isNaN(game.letras[i+""+j]) || game.letras[i+""+j].length > 1 ){      // caracteres numericos celula de indicação ( se tiver mais de 1 caracter , ou um numero )
+            else if(!isNaN(Game.letras[i+""+j]) || Game.letras[i+""+j].length > 1 ){      // caracteres numericos celula de indicação ( se tiver mais de 1 caracter , ou um numero )
 
-                let separator = game.letras[i+""+j].length - 1;
+                let separator = Game.letras[i+""+j].length - 1;
                 
                 input.classList.add("text-white","bg-slate-900","z-10");
                 input.disabled = true;
-                input.value = game.letras[i+""+j].substring(0,  separator );
+                input.value = Game.letras[i+""+j].substring(0,  separator );
 
 
 
-                if(game.letras[i+""+j][separator] == "b"){
+                if(Game.letras[i+""+j][separator] == "b"){
                     let seta = document.createElement("div");
                     seta.classList.add("h-0","w-0","border-x-8","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","bottom-0","mx-3.5","absolute");
                     td.append(seta);            
                     
-                }else if (game.letras[i+""+j][separator] == "t"){
+                }else if (Game.letras[i+""+j][separator] == "t"){
                     let seta = document.createElement("div");
                     seta.classList.add("h-0","w-0","border-x-8","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","top-0","mx-3.5","absolute","rotate-180");
                     td.append(seta);      
                     
-                }else if(game.letras[i+""+j][separator] == "l"){
+                }else if(Game.letras[i+""+j][separator] == "l"){
                     let seta = document.createElement("div");
                     seta.classList.add("h-0","w-0","border-x-8","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","left-0","top-0","my-4","absolute","rotate-90");
                     td.append(seta);      
                   
-                }else if(game.letras[i+""+j][separator] == "r"){
+                }else if(Game.letras[i+""+j][separator] == "r"){
                     let seta = document.createElement("div");
                     seta.classList.add("h-0","w-0","border-x-8","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","right-0","top-0","my-4","absolute","-rotate-90");
                     td.append(seta);   
@@ -125,7 +125,7 @@ export function atribuirLetra(game){
     }
 }
 
- function onInputPress(id,key){
+ function onInputPress(id,Game){
     
     Game.repostas.forEach(resposta => {// verifica em todas as respostas 
         let index;

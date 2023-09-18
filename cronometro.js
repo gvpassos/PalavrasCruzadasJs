@@ -1,4 +1,3 @@
-
 export var cronometro = null;
 let contagem = 0;
 

@@ -25,8 +25,6 @@ for(let i = 0; i < 10; i++){
         if(letras[i+''+j]===undefined)letras[i+""+j] = " ";
     }
 }
-
-
 export var Game ={
 
     x:7,y:7,
