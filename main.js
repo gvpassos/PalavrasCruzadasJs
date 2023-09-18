@@ -186,7 +186,7 @@ export function CompletouGame(){
     fim.classList.add("w-full", "h-full","p-8","flex","flex-col","items-center","justify-center","absolute","top-60","left-0","z-20");
 
     fim.innerHTML = 
-    `<div class='text-4xl font-bold border-4 border-slate-900 top-10 absolute h-1/3 w-96 text-center bg-slate-400 text-indigo-900 opacity-75 align-middle inline-block my-4 font-sans top-1/4 ' >
+    `<div class='text-4xl font-bold border-4 border-slate-900 top-10 botton-10 absolute w-96 text-center bg-slate-400 text-indigo-900 opacity-75 align-middle inline-block my-4 font-sans top-1/4 ' >
         Parabéns, você acertou todas as respostas! <br> em : ${tempo}
     </div>`; 
 
