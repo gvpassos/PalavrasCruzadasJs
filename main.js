@@ -1,6 +1,6 @@
-import { Game } from "./game.js";
-import { SalvarLocal, CarregarLocal , getbanco, fimGame,buscarRespostaBanco } from "./banco.js";
-import { cronometro, iniciarContagem, pararContagem} from "./cronometro.js";
+
+import { SalvarLocal, CarregarLocal , getbanco, fimGame,buscarRespostaBanco } from "https://gvpassos.github.io/PalavrasCruzadasJs/banco.js";
+import { cronometro, iniciarContagem, pararContagem} from "https://gvpassos.github.io/PalavrasCruzadasJs/cronometro.js";
 
 export function Criar(){
     let table = document.createElement("table");
