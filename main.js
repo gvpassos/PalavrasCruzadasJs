@@ -186,12 +186,12 @@ export function CompletouGame(){
     fim.classList.add("w-full", "h-full","p-8","flex","flex-col","items-center","justify-center","absolute","top-0","left-0","z-20");
 
     fim.innerHTML = 
-    `<div class='text-4xl font-bold border-4 border-slate-900 center h-56 w-96 text-center bg-slate-400 text-indigo-900 opacity-50 align-middle inline-block my-4'>
+    `<div class='text-4xl font-bold border-4 border-slate-900 top-10 absolute h-56 w-96 text-center bg-slate-400 text-indigo-900 opacity-50 align-middle inline-block my-4 font-sans' >
         Parabéns, você acertou todas as respostas! <br> em : ${tempo}
     </div>`; 
 
     let btncompartilhar = document.createElement("button");
-    btncompartilhar.classList.add("bg-indigo-900","text-white","p-4","rounded-md","font-bold","border-2","border-slate-900");
+    btncompartilhar.classList.add("bg-indigo-900","text-white","p-4","rounded-md","font-bold","border-2","border-slate-900","font-sans");
     btncompartilhar.innerHTML = 'Compartilhar seu resultado';
     btncompartilhar.addEventListener("click", ()=> {Compartilhar(tempo) });
 
