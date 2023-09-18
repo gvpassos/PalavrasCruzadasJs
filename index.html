@@ -10,12 +10,18 @@
     </head>
     <body>
         <script type="module">
-            import {Criar, atribuirLetra , onInputPress} from "./main.js"
+            import {Criar, atribuirLetra , CriarIntrucoes} from "./main.js"
             import { Game } from "./game.js"
+            import { jaFinalizado } from "./banco.js"
            
             window.onload = function(){
-                document.getElementById("jogo").appendChild(Criar(Game.x,Game.y));
+                document.getElementById("jogo").appendChild(Criar());
+                document.getElementById("instrucoes").appendChild(CriarIntrucoes());
                 atribuirLetra(Game);
+
+                if(jaFinalizado()){
+                    document.getElementById("cronometro").innerHTML = jaFinalizado();
+                }
             }
             
             
@@ -23,7 +29,13 @@
                         
         </script>
 
-<div id="jogo" class="w-96 h-96 m-2" ></div>
+    <div class="flex items-top flex-wrap">
+        <div id="cronometro" class="flex-2 text-gray-700 text-center px-4 py-2 m-2 w-full" >00:00:00</div>
+        <div id="jogo" class="flex-2 text-gray-700 text-center px-4 py-2 m-2 w-96" ></div>
+        <div id="instrucoes" class="flex-1 text-gray-700 text-center px-4 py-2 m-2"></div>
+    </div>
 
+
+    <abbr class="published" itemprop="datePublished dateModified" title="domingo, setembro 17, 2023">domingo, setembro 17, 2023</abbr>
 </body>
 </html>
