@@ -1,4 +1,4 @@
-var Nome = document.getElementsByClassName("published")[0].innerHTML;
+var Nome = document.getElementsByClassName("published")[0].dateTime;
 
 export function SalvarLocal(resposta,acertos){
     let map = {};
@@ -41,11 +41,7 @@ export function fimGame(tempo){
 
 export function jaFinalizado(){
     let map = {};
-    if(localStorage.getItem(Nome)) map = JSON.parse(localStorage.getItem(Nome));
-    else return false;
-
-    map = JSON.parse(localStorage.getItem(Nome));
-    if(map['tempo']) return map['tempo'];
+    if(localStorage.getItem(Nome)) return JSON.parse(localStorage.getItem(Nome));
     else return false;
 }
 

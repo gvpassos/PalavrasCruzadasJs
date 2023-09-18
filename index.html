@@ -100,8 +100,10 @@
                 atribuirLetra(Game);
 
                 if(jaFinalizado()){
-                    document.getElementById("cronometro").innerHTML = jaFinalizado();
-                    CompletouGame();
+                    const map =  jaFinalizado()
+                    document.getElementById("cronometro").innerHTML = map["tempo"];
+                    Game.acertos = map['acertos']
+                    if (Game.acertos == Game.repostas.length)CompletouGame();
                 }
 
                 
