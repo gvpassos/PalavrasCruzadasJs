@@ -191,7 +191,7 @@ export function CompletouGame(){
     </div>`; 
 
     let btncompartilhar = document.createElement("button");
-    btncompartilhar.classList.add("bg-indigo-900","text-white","p-4","rounded-md","font-bold","border-2","border-slate-900","font-sans");
+    btncompartilhar.classList.add("bg-indigo-900","text-white","p-4","rounded-md","font-bold","border-2","border-slate-900","font-sans","top-2");
     btncompartilhar.innerHTML = 'Compartilhar seu resultado';
     btncompartilhar.addEventListener("click", ()=> {Compartilhar(tempo) });
 
