@@ -45,7 +45,7 @@ export function Criar(Game){
 
 export function CriarIntrucoes(Game){
     let instrucoes = document.createElement("div");
-    instrucoes.classList.add("w-auto", "h-auto","p-4",);
+    instrucoes.classList.add("w-auto", "h-auto","py-1");
     Game.repostas.forEach(element => {
         let input = document.createElement("input");
         input.id = `resposta${element.numero}`;
