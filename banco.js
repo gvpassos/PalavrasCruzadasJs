@@ -1,4 +1,4 @@
-var Nome = document.getElementsByClassName("published")[0].innerHTML;
+var Nome = document.getElementsByClassName("published")[0].dateTime;
 
 export function SalvarLocal(resposta,acertos){
     let map = {};
