@@ -64,7 +64,7 @@ export function CriarIntrucoes(Game){
     return instrucoes;
 }
 
-export function atribuirLetrsa(Game){
+export function atribuirLetra(Game){
     for (let i = 0; i < Game.x; i++) {
         for (let j = 0; j < Game.y; j++) {
             let input =   document.getElementById(i+""+j);
