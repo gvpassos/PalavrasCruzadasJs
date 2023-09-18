@@ -45,7 +45,7 @@ export function Criar(Game){
 
 export function CriarIntrucoes(Game){
     let instrucoes = document.createElement("div");
-    instrucoes.classList.add("w-auto", "h-auto","p-4",);
+    instrucoes.classList.add("w-auto", "h-auto","py-1");
     Game.repostas.forEach(element => {
         let input = document.createElement("input");
         input.id = `resposta${element.numero}`;
@@ -55,7 +55,7 @@ export function CriarIntrucoes(Game){
         if(buscarRespostaBanco(element)) input.value = element.palavra;
 
         let item = document.createElement("li");
-        item.innerHTML = `<span class="font-bold text-indigo-600">${element.numero}</span> : <span class="flex w-96 text-lg">${element.dica}</span><br>`;
+        item.innerHTML = `<span class="font-bold text-indigo-600">${element.numero}</span> : <span class="flex w-60 text-lg">${element.dica}</span><br>`;
         item.appendChild(input);
         item.classList.add("marker:text-indigo-600" ,"mx-4","my-8","text-justify","text-slate-600");
 
