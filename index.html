@@ -9,7 +9,7 @@
         <script src="https://cdn.tailwindcss.com"></script>
 
         <script type="module">
-            import {Criar, atribuirLetra , CriarIntrucoes} from "https://gvpassos.github.io/PalavrasCruzadasJs/main.js"
+            import {Criar, atribuirLetra , CriarIntrucoes, CompletouGame, Compartilhar} from "https://gvpassos.github.io/PalavrasCruzadasJs/main.js"
             import { jaFinalizado } from "https://gvpassos.github.io/PalavrasCruzadasJs/banco.js"
             
             let letras = {
@@ -101,7 +101,10 @@
 
                 if(jaFinalizado()){
                     document.getElementById("cronometro").innerHTML = jaFinalizado();
+                    CompletouGame();
                 }
+
+                
             }
             
             

@@ -1,5 +1,5 @@
 
-import { SalvarLocal, CarregarLocal , getbanco, fimGame,buscarRespostaBanco } from "https://gvpassos.github.io/PalavrasCruzadasJs/banco.js";
+import { SalvarLocal, CarregarLocal , getbanco, fimGame,buscarRespostaBanco ,acertosBanco } from "https://gvpassos.github.io/PalavrasCruzadasJs/banco.js";
 import { cronometro, iniciarContagem, pararContagem} from "https://gvpassos.github.io/PalavrasCruzadasJs/cronometro.js";
 
 export function Criar(Game){
@@ -37,6 +37,9 @@ export function Criar(Game){
         }
         tbody.appendChild(tr);
     }
+
+    Game.acertos =  acertosBanco();
+
     return table;
 }
 
@@ -141,19 +144,15 @@ export function atribuirLetra(Game){
                         document.getElementById(idpos).classList.add("text-green-500");
                         document.getElementById(idpos).disabled = true;
 
-                        completarResposta(resposta);
-                        SalvarLocal(resposta);
+                        
                     });
 
                     Game.acertos += 1;
-                    console.log(Game.acertos);
+                    completarResposta(resposta);
+                    SalvarLocal(resposta,Game.acertos);
+
                         if(Game.acertos == Game.repostas.length){
-                            pararContagem();
-
-                            let tempo = document.getElementById("cronometro").innerHTML;
-                            alert("Parabéns, você acertou todas as respostas! em : " + tempo);
-
-                            fimGame(tempo)
+                            CompletouGame();
                         }
                     
                 }
@@ -174,4 +173,36 @@ function completarResposta(resposta){
     inputResposta.classList.add("text-green-500");
    
     
+}
+
+export function CompletouGame(){  
+    pararContagem();
+
+    let tempo = document.getElementById("cronometro").innerHTML;
+    fimGame(tempo)
+
+    let fim = document.createElement("div");
+    
+    fim.classList.add("w-full", "h-full","p-8","flex","flex-col","items-center","justify-center","absolute","top-0","left-0","z-20");
+
+    fim.innerHTML = 
+    `<div class='text-4xl font-bold border-4 border-slate-900 center h-56 w-96 text-center bg-slate-400 text-indigo-900 opacity-50 align-middle inline-block my-4'>
+        Parabéns, você acertou todas as respostas! <br> em : ${tempo}
+    </div>`; 
+
+    let btncompartilhar = document.createElement("button");
+    btncompartilhar.classList.add("bg-indigo-900","text-white","p-4","rounded-md","font-bold","border-2","border-slate-900");
+    btncompartilhar.innerHTML = 'Compartilhar seu resultado';
+    btncompartilhar.addEventListener("click", ()=> {Compartilhar(tempo) });
+
+    fim.appendChild(btncompartilhar);
+
+    document.getElementById("cronometro").appendChild(fim);
+    document.getElementById("cronometro").classList.add('flex', 'items-center', 'justify-center','h-8');
+}
+
+
+export function Compartilhar(tempo){
+    if(navigator.share) navigator.share({ title: "Palavras Cruzadas", text: `Completei as Palavras Cruzadas em ${tempo } do Jornal o Aperitivo`,url: window.location.href });
+    else alert("Não foi possível compartilhar, Navegador não suporta o compartilhamento")
 }
