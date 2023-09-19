@@ -3,7 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>Palavras Cruzadas</title>
-       
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+        <html-lang="pt-br">
+        
         <!-- <link rel="stylesheet" href="css/main.css">
             <link rel="stylesheet" href="css/tail.css">-->
         <script src="https://cdn.tailwindcss.com"></script>
@@ -14,84 +16,83 @@
             
             let letras = {
     //  opcoes //
-    "00":"1r",
-    "11":"2b",   
-    "25":"3l",
-    "13":"4b",
-    "34":"5l",
-    "10":"6b",
-    "42":"7r",
-    "66":"8l",
-    "16":"9b",
-    "52":"10r",
+    "01": "1r",
+    "12": "2b",
+    "23": "3l",
+    "34": "4b",
+    "45": "5l",
+    "56": "6r",
+    "67": "7l",
+    "78": "8b",
+    "89": "9r",
+    "90": "10l",
 
     // casas brancas //
-    "12":'.',
-    "14":'.',
-    "15":'.',
-    "35":".",
-
-
-
+    "10": ".",
+    "21": ".",
+    "32": ".",
+    "43": ".",
 };
-                for(let i = 0; i < 10; i++){
-    for(let j = 0; j < 10; j++){
-        if(letras[i+''+j]===undefined)letras[i+""+j] = " ";
+
+for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+        if (letras[i + '' + j] === undefined) letras[i + "" + j] = " ";
     }
 }
-            var Game ={
 
-    x:7,y:7,
+var Game = {
 
-    letras:letras,
+    x: 10,
+    y: 10,
 
-    repostas:[
+    letras: letras,
+
+    repostas: [
         {
-            numero:"1", palavra:"proeza",pos:["01","02","03","04","05","06"],
-            dica:"Realizar algo incomum, difícil ou nunca feito antes."
-        },        
-        {
-            numero:"2", palavra:"amor",pos:["21","31","41","51"],
-            dica:"Querer o bem do outro e agir de acordo com essa vontade.",
+            numero: "1", palavra: "sol", pos: ["02", "03", "04"],
+            dica: "Uma estrela que é o centro do nosso sistema solar."
         },
         {
-            numero:"3", palavra:"lunar",pos:["24","23","22","21","20"],
-            dica:"Da Lua ou a ela relativo",
+            numero: "2", palavra: "mar", pos: ["13", "14", "15"],
+            dica: "Uma grande extensão de água salgada."
         },
         {
-            numero:"4", palavra:"util",pos:["23","33","43","53"],
-            dica:"Que pode ter ou tem algum uso; que serve ou é necessário para algo."
+            numero: "3", palavra: "lua", pos: ["23", "24", "25"],
+            dica: "O satélite natural da Terra."
         },
         {
-            numero:"5", palavra:"tome",pos:["33","32","31","30"],
-            dica:"Um dos seguidores de Jesus, que foi escolhido para ser apóstolo. Ele viveu com Jesus, aprendeu dele e foi preparado para ser um dos futuros líderes da igreja."
+            numero: "4", palavra: "terra", pos: ["34", "44", "54", "64", "74"],
+            dica: "O terceiro planeta a partir do Sol em nosso sistema solar."
         },
         {
-            numero:"6", palavra:"regou",pos:["20","30","40","50","60"],
-            dica:"Terceira pessoa singular do pretérito perfeito do indicativo de regar"
+            numero: "5", palavra: "vento", pos: ["45", "55", "65", "75", "85"],
+            dica: "O movimento do ar."
         },
         {
-            numero:"7", palavra:"item",pos:["43","44","45","46"],
-            dica:"Cada uma das partes ou unidades de algo.Elemento, parcela, unidade."
+            numero: "6", palavra: "fogo", pos: ["56", "57", "58", "59"],
+            dica: "Uma reação química que produz calor e luz."
         },
         {
-            numero:"8", palavra:"malibu",pos:["65","64","63","62","61","60"],
-            dica:"Uma cidade a oeste de Los Angeles, na Califórnia.",
+            numero: "7", palavra: "chuva", pos: ["67", "77", "87", "97", "87"],
+            dica: "Precipitação de gotas de água do céu."
         },
         {
-            numero:"9", palavra:"pomo",pos:["26","36","46","56"],
-            dica:"[Linguagem poética] O peito ou seio da mulher."
+            numero: "8", palavra: "neve", pos: ["78", "88", "98", "87"],
+            dica: "Precipitação de cristais de gelo."
         },
-        {   
-            numero:"10", palavra:"limo",pos:["53","54","55","56"],
-            dica:"Mistura viscosa, pegajosa, de argila, matéria orgânica e água; barro, lama, lodo."
+        {
+            numero: "9", palavra: "nuvem", pos: ["89", "99", "98", "97", "96"],
+            dica: "Agregado de gotículas de água ou gelo em suspensão na atmosfera."
         },
-   
+        {
+            numero: "10", palavra: "arco-íris", pos: ["90", "80", "70", "60", "50", "40", "30", "20", "10"],
+            dica: "Um fenômeno óptico e meteorológico que causa uma luz multicolorida no céu."
+        },
+
     ],
 
-    acertos:0,
+    acertos: 0,
 };
-
 
            
             window.onload = function(){

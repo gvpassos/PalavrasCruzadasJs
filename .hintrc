@@ -9,6 +9,13 @@
       {
         "html-has-lang": "off"
       }
+    ],
+    "axe/name-role-value": "off",
+    "axe/text-alternatives": [
+      "default",
+      {
+        "document-title": "off"
+      }
     ]
   }
 }
