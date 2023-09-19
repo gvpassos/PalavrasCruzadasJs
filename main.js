@@ -184,10 +184,10 @@ export function CompletouGame(){
 
     let fim = document.createElement("div");
     
-    fim.classList.add("w-full", "h-full","p-8","flex","flex-col","items-center","justify-center","fixed","top-60","bottom-10","left-0","z-20");
+    fim.classList.add("w-full", "h-full","p-8","flex","flex-col","items-center","justify-center","fixed","top-10","bottom-10","left-0","z-20");
 
     fim.innerHTML = 
-    `<div class='text-4xl font-bold border-4 border-slate-900 top-10 fixed bottom-10 w-96 text-center bg-slate-400 text-indigo-900 opacity-75 align-middle inline-block my-4 font-sans top-1/4 ' >
+    `<div class='text-4xl font-bold border-4 border-slate-900 top-10 fixed bottom-10 w-96 text-center bg-slate-400 text-indigo-900 opacity-75 align-middle inline-block my-4 font-sans' >
         Parabéns, você acertou todas as respostas! <br> em : ${tempo}
     </div>`; 
 
