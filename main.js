@@ -39,7 +39,9 @@ export function Criar(Game){
     }
 
     Game.acertos =  acertosBanco();
-
+    let creditos = document.createElement('tr')
+    creditos.innerHTML = `<td colspan="${Game.x}"><div class="text-slate-200 text-right px-4 text-xs"> Desenvolvido por <a href="https://github.com/gvpassos" target="_blank">@gvpassos disponibilizado no <a href="https://github.com/gvpassos/palavrasCruzadasjs" target="_blank">Github</a></div></td>`;	
+    table.appendChild(creditos);
     return table;
 }
 
