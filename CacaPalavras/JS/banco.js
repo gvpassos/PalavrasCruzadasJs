@@ -1,4 +1,4 @@
-var Nome = document.getElementsByClassName("published")[0].innerHTML;
+var Nome = document.getElementsByClassName("published")[0].innerHTML ? document.getElementsByClassName("published")[0].innerHTML : document.getElementsByClassName("published")[1].innerHTML;
 
 export function SalvarLocal(resposta,pos,acertos,tempo){
     let map = {palavras:[]};
@@ -38,17 +38,17 @@ export function jaFinalizado(){
 }
 
 
-export function buscarRespostaBanco(resposta){
-    let map = {},    string = "";
+export function somarPontos(resposta){
+    let map = {};
 
     if(localStorage.getItem(Nome)) map = JSON.parse(localStorage.getItem(Nome));
- 
-    resposta.pos.forEach(index => {
-        if(map[index])  string += map[index];
-    });
+    else return true;
+    for (let i = 0; i < map.palavras.length; i++) {
+        if(resposta == map.palavras[i].resposta)
+            return false
+    }
 
-    if(resposta.palavra == string.toLocaleLowerCase()) return true;
-    else return false;
+    return true;
     
     
 }

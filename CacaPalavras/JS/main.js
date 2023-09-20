@@ -1,5 +1,5 @@
 import { iniciarContagem ,cronometro, pararContagem} from "https://gvpassos.github.io/PalavrasCruzadasJs/CacaPalavras/JS/cronometro.js";
-import { CarregarLocal, SalvarLocal, getbanco, jaFinalizado } from "https://gvpassos.github.io/PalavrasCruzadasJs/CacaPalavras/JS/banco.js";
+import { CarregarLocal, SalvarLocal, getbanco, jaFinalizado ,somarPontos} from "https://gvpassos.github.io/PalavrasCruzadasJs/CacaPalavras/JS/banco.js";
 
 let Letras = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 
@@ -7,7 +7,7 @@ let Letras = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q
 export function CriarMapa(Game){
     let map = document.createElement("table");
         map.id = "mapa";
-        map.classList.add("p-2","h-96","w-96","bg-white","border-2","center");
+        map.classList.add("p-2","h-96","w-60","bg-white","border-2","center");
 
         for (let i = 0; i < Game.x; i++) {
             let tr = document.createElement("tr");
@@ -179,7 +179,7 @@ function vericarPalavra(Game){
     
     for (let index = 0; index < Game.respostas.length; index++) {
         if(resposta.toUpperCase() == Game.respostas[index].palavra.toUpperCase()){ /// Acertou uma RESPOSTA /////
-            Game.acertos += 1;
+           if(somarPontos()) Game.acertos += 1;
            if(Game.acertos == Game.respostas.length){ 
                 pararContagem();
                 completarGame(document.getElementById("mapa"));

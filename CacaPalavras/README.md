@@ -20,4 +20,6 @@ let Game = {
 
 ![Resultado](resultado.jpg)
 
-#
+### bug conhecidos 
+
+- [x] é possivel marcar pontos marcando a mesma palavra mais de uma vez
