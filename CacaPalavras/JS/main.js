@@ -180,7 +180,7 @@ function vericarPalavra(Game){
     for (let index = 0; index < Game.respostas.length; index++) {
         if(resposta.toUpperCase() == Game.respostas[index].palavra.toUpperCase()){ /// Acertou uma RESPOSTA /////
             Game.acertos += 1;
-            if(Game.acertos == Game.respostas.length){ 
+           if(Game.acertos == Game.respostas.length){ 
                 pararContagem();
                 completarGame(document.getElementById("mapa"));
             }

@@ -3,7 +3,7 @@ var Nome = document.getElementsByClassName("published")[0].innerHTML;
 export function SalvarLocal(resposta,pos,acertos,tempo){
     let map = {palavras:[]};
     if(localStorage.getItem(Nome))map = JSON.parse(localStorage.getItem(Nome));
-    map['palavras'].push({resposta:resposta,pos:pos});
+    map['palavras'].push({resposta:resposta,pos:pos,jaAcertou:true});
     map['acertos'] = acertos;
     map['tempo'] = tempo;
     console.log(map);
