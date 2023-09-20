@@ -179,7 +179,7 @@ function vericarPalavra(Game){
     
     for (let index = 0; index < Game.respostas.length; index++) {
         if(resposta.toUpperCase() == Game.respostas[index].palavra.toUpperCase()){ /// Acertou uma RESPOSTA /////
-           if(somarPontos(Game.respostas[index])) Game.acertos += 1;
+           if(somarPontos(Game.respostas[index].palavra)) Game.acertos += 1;
            if(Game.acertos == Game.respostas.length){ 
                 pararContagem();
                 completarGame(document.getElementById("mapa"));
