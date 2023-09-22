@@ -9,8 +9,7 @@ let Letras = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q
 export function CriarMapa(Game){
     let map = document.createElement("table");
         map.id = "mapa";
-        map.classList.add("bg-white","border-2","center");
-
+        map.classList.add("bg-white","border-2","center","relative");
         for (let i = 0; i < Game.x; i++) {
             let tr = document.createElement("tr");
             for (let j = 0; j < Game.y; j++) {
@@ -31,6 +30,7 @@ export function CriarMapa(Game){
                             break;
                         }
                     }
+                    
                     
                 }
 
@@ -53,15 +53,23 @@ export function CriarMapa(Game){
         }
 
     let creditos = document.createElement('tr')
-    creditos.innerHTML = `<td colspan="${Game.x}"><div class="text-slate-200 text-right px-4 text-xs"> Desenvolvido por <a href="https://github.com/gvpassos" target="_blank">@gvpassos disponibilizado no <a href="https://github.com/gvpassos/palavrasCruzadasjs" target="_blank">Github</a></div></td>`;	
+    creditos.innerHTML = `<td colspan="${Game.x}"><div class="text-slate-200 text-right px-4 text-xs"> Desenvolvido por <a href="https://github.com/gvpassos" target="_blank">@gvpassos</a> disponibilizado no <a href="https://github.com/gvpassos/palavrasCruzadasjs" target="_blank">Github</a></div></td>`;	
     map.appendChild(creditos);
 
     document.getElementById("cronometroCacaPalavras").innerHTML = getTime()? getTime() : "00:00:00";
 
     if(totalAcertos() == Game.respostas.length){
-        map.classList.add('relative')
         map.appendChild(completarGame(getTime()))
     }
+    let divRespostas = document.createElement("div"),string = "";
+    for (let i = 0; i < Game.respostas.length; i++) {
+        string += Game.respostas[i].palavra + " - "; 
+        
+    }
+    divRespostas.innerHTML = string;
+    divRespostas.classList.add("rotate-180","text-xs","absolute","my-2","text-center","-bottom-5","text-slate-400");
+    document.getElementById('cacapalavras').appendChild(divRespostas);
+
     return map;
 }
 
@@ -186,7 +194,7 @@ function vericarPalavra(Game){
             if(Game.acertos == Game.respostas.length){ 
                     pararContagem();
                     document.getElementById("cacapalavras").appendChild(
-                        completarGame(document.getElementById("cronometroPalavrasCruzadas").innerHTML)
+                        completarGame(document.getElementById("cronometroCacaPalavras").innerHTML)
                     );
                     
             }
@@ -197,7 +205,7 @@ function vericarPalavra(Game){
                 document.getElementById(lastclick[i]).classList.add("text-green-500","border-green-500","rounded-md");
             }
 
-            SalvarLocal(resposta,lastclick,Game.acertos,document.getElementById("cronometroPalavrasCruzadas").innerHTML);
+            SalvarLocal(resposta,lastclick,Game.acertos,document.getElementById("cronometroCacaPalavras").innerHTML);
 
             lastclick = null;
             direcao = "any";

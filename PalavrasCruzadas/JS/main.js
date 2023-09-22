@@ -8,7 +8,7 @@ export function Criar(Game){
     let tbody = document.createElement("tbody");
     table.appendChild(tbody);
 
-    table.classList.add("w-auto", "h-auto","p-0","h-96","w-96");
+    table.classList.add("p-0","h-96","w-96","border-4","border-slate-200");
 
     for (let i = 0; i < Game.x; i++) {
         let tr = document.createElement("tr");
@@ -42,7 +42,7 @@ export function Criar(Game){
     Game.acertos =  acertosBanco();
 
     let creditos = document.createElement('tr')
-    creditos.innerHTML = `<td colspan="${Game.x}"><div class="text-slate-200 text-right px-4 text-xs"> Desenvolvido por <a href="https://github.com/gvpassos" target="_blank">@gvpassos disponibilizado no <a href="https://github.com/gvpassos/palavrasCruzadasjs" target="_blank">Github</a></div></td>`;	
+    creditos.innerHTML = `<td colspan="${Game.x}"><div class="text-slate-200 text-right px-4 text-xs"> Desenvolvido por <a href="https://github.com/gvpassos" target="_blank">@gvpassos</a> disponibilizado no <a href="https://github.com/gvpassos/palavrasCruzadasjs" target="_blank">Github</a></div></td>`;	
     table.appendChild(creditos);
 
     document.getElementById("cronometroPalavrasCruzadas").innerHTML = getTime()? getTime() : "00:00:00";
@@ -169,7 +169,7 @@ export function atribuirLetra(Game){
 
                     Game.acertos += 1;
                     completarResposta(resposta);
-                    SalvarLocal(resposta,Game.acertos);
+                    SalvarLocal(resposta,Game.acertos,document.getElementById("cronometroPalavrasCruzadas").innerHTM);
 
                         if(Game.acertos == Game.repostas.length){
                             pararContagem();
