@@ -8,7 +8,7 @@ export function Criar(Game){
     let tbody = document.createElement("tbody");
     table.appendChild(tbody);
 
-    table.classList.add("p-0","h-96","w-96","border-4","border-slate-200");
+    table.classList.add("p-0","h-auto","w-auto","border-4","border-slate-200");
 
     for (let i = 0; i < Game.x; i++) {
         let tr = document.createElement("tr");
@@ -18,11 +18,11 @@ export function Criar(Game){
             td.classList.add("relative");
             let input = document.createElement("input");
 
-            input.classList.add("w-8","h-8","text-center","font-bold","uppercase");
+            input.classList.add("w-10","h-10","text-center","font-bold","uppercase");
             input.id =  "PC"+i+j;
 
             td.appendChild(input);
-            td.classList.add("w-auto", "h-auto","p-0","border-4","border-slate-200");
+            td.classList.add("w-10", "h-10","p-0","border-4","border-slate-200");
 
             input.addEventListener("keyup", (event) => {
                 if(event.target.value.length > 1) event.target.value = event.target.value.substring(0,  1 )
