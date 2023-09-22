@@ -58,6 +58,9 @@ export function Criar(Game){
 export function CriarIntrucoes(Game){
     let instrucoes = document.createElement("div");
     instrucoes.classList.add("w-auto", "h-auto","py-1");
+    let string = "";
+    let divRespostas = document.createElement("div");
+
     Game.repostas.forEach(element => {
         let input = document.createElement("input");
         input.id = `resposta${element.numero}`;
@@ -71,11 +74,17 @@ export function CriarIntrucoes(Game){
         item.appendChild(input);
         item.classList.add("marker:text-indigo-600" ,"mx-4","my-8","text-justify","text-slate-600");
 
-
+        
+        string =numero+" - "+ element +";";
+        
+        
         instrucoes.appendChild(item);
 
     });
 
+    divRespostas.innerHTML = string;
+    divRespostas.classList.add("rotate-180","text-xs");
+    instrucoes.appendChild(divRespostas);
     return instrucoes;
 }
 
