@@ -34,7 +34,7 @@ export function getTime(){
     else return false;
     
 }
-export function jaFinalizado(){
+export function totalAcertos(){
     let map = {};
     if(localStorage.getItem(Nome)) return JSON.parse(localStorage.getItem(Nome)).acertos;
     else return false;
@@ -54,13 +54,5 @@ export function somarPontos(resposta){
 
     return true;
     
-    
-}
-
-export function acertosBanco(){
-    let map = JSON.parse(localStorage.getItem(Nome));
-    if(!map) return 0;
-    else if(map['acertos']) return map['acertos'];
-    else return 0;
     
 }
