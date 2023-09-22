@@ -18,7 +18,7 @@ export function Criar(Game){
             td.classList.add("relative");
             let input = document.createElement("input");
 
-            input.classList.add("w-10","h-10","text-center","font-bold","uppercase");
+            input.classList.add("w-8","h-8","text-center","font-bold","uppercase");
             input.id =  "PC"+i+j;
 
             td.appendChild(input);
