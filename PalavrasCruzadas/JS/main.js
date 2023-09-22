@@ -75,7 +75,7 @@ export function CriarIntrucoes(Game){
         item.classList.add("marker:text-indigo-600" ,"mx-4","my-8","text-justify","text-slate-600");
 
         
-        string += element.numero+" - "+ element.palavra +";";
+        string += element.numero +" - "+ element.palavra +";";
         
         
         instrucoes.appendChild(item);

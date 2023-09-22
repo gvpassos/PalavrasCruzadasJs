@@ -59,7 +59,7 @@ export function CriarMapa(Game){
     document.getElementById("cronometroCacaPalavras").innerHTML = getTime()? getTime() : "00:00:00";
 
     if(totalAcertos() == Game.respostas.length){
-        map.className.add('relative')
+        map.classList.add('relative')
         map.appendChild(completarGame(getTime()))
     }
     return map;
