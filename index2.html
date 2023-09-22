@@ -10,7 +10,7 @@
             <link rel="stylesheet" href="css/tail.css">-->
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://fonts.cdnfonts.com/css/alarm-clock" rel="stylesheet">
-        <body>
+
             
 
         <script type="module">
@@ -20,24 +20,23 @@
             let letras = {
     //  opcoes //
     "00":"1r",
-    "11":"2b",   
-    "25":"3l",
-    "13":"4b",
-    "34":"5l",
-    "10":"6b",
-    "42":"7r",
-    "66":"8l",
-    "16":"9b",
-    "52":"10r",
-
+    "10":"2b",   
+    "45":"3l",
+    "11":"4r",
+    "16":"5b",
+    "21":"6b",
+    "23":"7l",
+    "53":"8r",
+    "72":"9r",
     // casas brancas //
-    "12":'.',
-    "14":'.',
-    "15":'.',
-    "35":".",
-
-
-
+    "24":".",
+    "25":".",
+    "33" :".",
+    "34" :".",
+    "35" :".",     
+    "63" :".",
+    "64" :".",
+    "65" :".",      
 };
                 for(let i = 0; i < 10; i++){
                     for(let j = 0; j < 10; j++){
@@ -46,52 +45,73 @@
                 }
             var PalavrasCruzadasObj ={
 
-    x:7,y:7,
+    x:8,y:7,
 
     letras:letras,
 
-    repostas:[
+    repostas: [
         {
-            numero:"1", palavra:"proeza",pos:["01","02","03","04","05","06"],
-            dica:"Realizar algo incomum, difícil ou nunca feito antes."
-        },        
-        {
-            numero:"2", palavra:"amor",pos:["21","31","41","51"],
-            dica:"Querer o bem do outro e agir de acordo com essa vontade.",
+            numero: "1",
+            palavra: "banana",
+            pos: ["01", "02", "03", "04", "05", "06"],
+            dica: "Uma fruta amarela e doce."
         },
         {
-            numero:"3", palavra:"lunar",pos:["24","23","22","21","20"],
-            dica:"Da Lua ou a ela relativo",
+            numero: "2",
+            palavra: "quente",
+            pos: ["20", "30", "40", "50", "60","70"],
+            dica: "Um adjetivo que descreve algo com alta temperatura."
         },
         {
-            numero:"4", palavra:"util",pos:["23","33","43","53"],
-            dica:"Que pode ter ou tem algum uso; que serve ou é necessário para algo."
+            numero: "3",
+            palavra: "verde",
+            pos: ["44", "43", "42", "41", "40"],
+            dica: "Uma cor associada à natureza."
         },
         {
-            numero:"5", palavra:"tome",pos:["33","32","31","30"],
-            dica:"Um dos seguidores de Jesus, que foi escolhido para ser apóstolo. Ele viveu com Jesus, aprendeu dele e foi preparado para ser um dos futuros líderes da igreja."
+            numero: "4",
+            palavra: "azul",
+            pos: ["12", "13", "14", "15"],
+            dica: "Uma cor frequentemente associada ao céu, ao oceano e à agua."
         },
         {
-            numero:"6", palavra:"regou",pos:["20","30","40","50","60"],
-            dica:"Terceira pessoa singular do pretérito perfeito do indicativo de regar"
+            numero: "5",
+            palavra: "beleza",
+            pos: ["26", "36", "46", "56", "66", "76"],
+            dica: "Qualidade, propriedade, caráter ou virtude do que é belo; manifestação característica do belo.segundo Dicionario Oxford"
         },
         {
-            numero:"7", palavra:"item",pos:["43","44","45","46"],
-            dica:"Cada uma das partes ou unidades de algo.Elemento, parcela, unidade."
+            numero: "6",
+            palavra: "educa",
+            pos: ["31", "41", "51", "61", "71"],
+            dica: "Forma no infinitivo do verbo Educar"
         },
         {
-            numero:"8", palavra:"malibu",pos:["65","64","63","62","61","60"],
-            dica:"Uma cidade a oeste de Los Angeles, na Califórnia.",
+            numero: "7",
+            palavra: "sorte",
+            pos: ["22", "32", "42", "52", "62"],
+            dica: "Circunstância ou evento imprevisível que resulta em um resultado positivo ou favorável para uma pessoa."
         },
         {
-            numero:"9", palavra:"pomo",pos:["26","36","46","56"],
-            dica:"[Linguagem poética] O peito ou seio da mulher."
+            numero: "8",
+            palavra: "ele",
+            pos: ["54", "55", "56"],
+            dica: "Terceira pessoa do singular no masculino."
         },
-        {   
-            numero:"10", palavra:"limo",pos:["53","54","55","56"],
-            dica:"Mistura viscosa, pegajosa, de argila, matéria orgânica e água; barro, lama, lodo."
+        {
+            numero: "9",
+            palavra: "dama",
+            pos: ["73", "74", "75", "76"],
+            dica: "Uma dama é uma mulher adulta, geralmente de maneira refinada e elegante, ou um jogo de tabuleiro estratégico para dois jogadores, onde o objetivo é capturar todas as peças do oponente ."
         },
-   
+        {
+            numero: "9",
+            palavra: "sorte",
+            pos: ["73", "74", "75", "76"],
+            dica: " circunstância ou evento imprevisível que resulta em um resultado positivo ou favorável para uma pessoa."
+        }
+        
+
     ],
 
     acertos:0,
@@ -104,11 +124,12 @@
                     x:10, y:10,
 
                     respostas:[
-                        {palavra:"aperitivo",pos:["11","12","13","14","15","16","17","18","19"]},
-                        {palavra:"sul",pos:["35","45","55"]},
+                        {palavra:"aperitivo",pos:["01","02","03","04","05","06","07","08","09"]},
+                        {palavra:"sul",pos:["39","49","59"]},
                         {palavra:"noticia",pos:["61","62","63","64","65","66","67"]},
-                        {palavra:"mais",pos:["32","33","34","35"]},
                         {palavra:"confianca",pos:["10","20","30","40","50","60","70","80","90"]},
+                        {palavra:"jornal",pos:["94","95","96","97","98","99"]},
+                        {palavra:"itajuba",pos:["42","43","44","45","46","47","48"]},
                     ],
                     acertos:0
                 }
@@ -164,7 +185,7 @@
             <button id="btnAbaPalavrasCruzadas" class="w-1/2 border-2 border-b-0">Palavras Cruzadas</button>
             <button id="btnAbaCacaPalavras"  class="w-1/2 border-2 bg-slate-200">Caca Palavras</button>
         </div>
-    <section id="abaPalavrasCruzadas" class="duration-150">
+    <section id="abaPalavrasCruzadas" class="my-4">
         <div class="flex items-top flex-wrap">
             <div id="cronometroPalavrasCruzadas" class="flex-2 text-white bg-black text-center px-4 py-2 m-2 w-full text-xl bold" style="font-family: 'alarm clock'">00:00:00</div>
             <div id="jogo" class="flex-2 text-gray-700 text-center px-4 py-2 m-2 w-96 relative" ></div>
@@ -172,7 +193,7 @@
         </div>
     </section>
     
-    <section id="abaCacaPalavras" class="duration-150">
+    <section id="abaCacaPalavras" class="my-4">
         <div class="flex items-top flex-wrap">
             <div id="cronometroCacaPalavras" class="flex-2 text-white bg-black text-center px-4 py-2 m-2 w-full text-xl bold" style="font-family: 'alarm clock'">00:00:00</div>
             <div id="cacapalavras" class="flex-2 text-gray-700 text-center py-2 m-1 w-96 relative" ></div>
