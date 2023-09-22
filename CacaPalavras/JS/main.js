@@ -1,5 +1,5 @@
 import { iniciarContagem ,cronometroCacaPalavras, pararContagem} from "./cronometro.js";
-import { CarregarLocal, SalvarLocal, jaFinalizado ,somarPontos,getTime} from "./banco.js";
+import { CarregarLocal, SalvarLocal, totalAcertos ,somarPontos,getTime} from "./banco.js";
 
 import { completarGame } from "../../msgCompletou.js";
 
@@ -44,7 +44,7 @@ export function CriarMapa(Game){
                     button.classList.add("text-green-500","border-green-500","rounded-md");                    
                 }
                 
-                if(jaFinalizado() == Game.respostas.length) button.disabled = true
+                if(totalAcertos() == Game.respostas.length) button.disabled = true
                 
                 td.appendChild(button);
                 tr.appendChild(td);
@@ -52,15 +52,15 @@ export function CriarMapa(Game){
             map.appendChild(tr);
         }
 
-    if(jaFinalizado() == Game.respostas.length){
-        completarGame(map)
-    }
     let creditos = document.createElement('tr')
     creditos.innerHTML = `<td colspan="${Game.x}"><div class="text-slate-200 text-right px-4 text-xs"> Desenvolvido por <a href="https://github.com/gvpassos" target="_blank">@gvpassos disponibilizado no <a href="https://github.com/gvpassos/palavrasCruzadasjs" target="_blank">Github</a></div></td>`;	
     map.appendChild(creditos);
 
     document.getElementById("cronometroCacaPalavras").innerHTML = getTime()? getTime() : "00:00:00";
 
+    if(totalAcertos() == Game.respostas.length){
+        map.appendChild(completarGame(getTime()))
+    }
     return map;
 }
 
@@ -75,7 +75,7 @@ function cliquesBtn(event,Game){
         }else{
             for (let index = 0; index < lastclick.length; index++) { /// ver todas as posições
                 const pos = lastclick[index];
-                if("CP" + pos == event.target.id) {                /// se a posição ja foi clicada 
+                if(pos == event.target.id) {                /// se a posição ja foi clicada 
                     changeColortoBlack(event.target);       /// remove a cor
                     lastclick.splice(index,1);              /// remove a posição
                     if(lastclick.length == 0 ){             /// se não há mais posições
@@ -87,8 +87,8 @@ function cliquesBtn(event,Game){
             }
             for (let i = 0; i < lastclick.length; i++) {    /// ver todas as posições 
                 const pos = lastclick[i];
-                if( "CP" + Number(pos[0]) == Number(event.target.id[0]) && direcao != "horizontal"){          // Horizontal é igual ao id da célula
-                    if("CP" + Number(pos[1])+1 == Number(event.target.id[1])){    // Vertical é igual ao id da célula + 1 
+                if( Number(pos[0]) == Number(event.target.id[0]) && direcao != "horizontal"){          // Horizontal é igual ao id da célula
+                    if(Number(pos[1])+1 == Number(event.target.id[1])){    // Vertical é igual ao id da célula + 1 
                         changeColortoRed(event.target);                     // Adiciona a cor
                         lastclick.push(event.target.id);                    // Adiciona a posição
 
@@ -97,7 +97,7 @@ function cliquesBtn(event,Game){
                         vericarPalavra(Game)
                         return
                     }
-                    else if("CP"+ Number(pos[1])-1 == Number(event.target.id[1])){    // Vertical é igual ao id da célula - 1
+                    else if(Number(pos[1])-1 == Number(event.target.id[1])){    // Vertical é igual ao id da célula - 1
                         changeColortoRed(event.target);                         // Adiciona a cor
                         lastclick.push(event.target.id);                        // Adiciona a posição
                         
@@ -177,14 +177,14 @@ function vericarPalavra(Game){
     for(let i = 0; i < lastclick.length; i++){
         resposta += document.getElementById(lastclick[i]).innerHTML; ///Recria a palavra da resposta 
     }  
-    console.log(lastclick);
+
     for (let index = 0; index < Game.respostas.length; index++) {
         if(resposta.toUpperCase() == Game.respostas[index].palavra.toUpperCase()){ /// Acertou uma RESPOSTA /////
            
             if(somarPontos(Game.respostas[index].palavra)) Game.acertos += 1;
             if(Game.acertos == Game.respostas.length){ 
                     pararContagem();
-                    document.getElementById("jogo").appendChild(
+                    document.getElementById("cacapalavras").appendChild(
                         completarGame(document.getElementById("cronometroPalavrasCruzadas").innerHTML)
                     );
                     

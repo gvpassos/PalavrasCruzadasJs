@@ -10,7 +10,7 @@ export function iniciarContagem(){
     }, 1000);
 }
 export function pararContagem(){
-    clearInterval(cronometro);
+    clearInterval(cronometroCacaPalavras);
     
 }
 

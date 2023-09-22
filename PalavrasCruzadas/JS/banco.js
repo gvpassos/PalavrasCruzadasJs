@@ -5,7 +5,7 @@ export function SalvarLocal(resposta,acertos){
     if(localStorage.getItem(Nome)) map = JSON.parse(localStorage.getItem(Nome));
 
     for (const iterator of resposta.pos) {
-        map[iterator] = document.getElementById(iterator).value
+        map[iterator] = document.getElementById("PC"+iterator).value
         
     }  
     

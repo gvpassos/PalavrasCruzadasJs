@@ -40,12 +40,14 @@ export function Criar(Game){
     }
 
     Game.acertos =  acertosBanco();
+
     let creditos = document.createElement('tr')
     creditos.innerHTML = `<td colspan="${Game.x}"><div class="text-slate-200 text-right px-4 text-xs"> Desenvolvido por <a href="https://github.com/gvpassos" target="_blank">@gvpassos disponibilizado no <a href="https://github.com/gvpassos/palavrasCruzadasjs" target="_blank">Github</a></div></td>`;	
     table.appendChild(creditos);
 
     document.getElementById("cronometroPalavrasCruzadas").innerHTML = getTime()? getTime() : "00:00:00";
 
+    if (Game.acertos == Game.repostas.length) table.appendChild(completarGame(getTime()))
     return table;
 }
 
@@ -135,22 +137,21 @@ export function atribuirLetra(Game){
 }
 
  function onInputPress(id,Game){
-    
+   
     Game.repostas.forEach(resposta => {// verifica em todas as respostas 
         let index;
         for (index = 0; index < resposta.pos.length; index++) {/// verifica em todas as posições de cada resposta
-            if(resposta.pos[index] == id){// verifica se a posição é igual a id da célula
+            if("PC"+resposta.pos[index] == id){// verifica se a posição é igual a id da célula
                 let string = "";
                 resposta.pos.forEach(idpos => {
-                    string += document.getElementById(idpos).value; ///Recria a palavra da resposta
+                    string += document.getElementById("PC"+idpos).value; ///Recria a palavra da resposta
                 });
 
+                
                 if(string.toLocaleLowerCase() == resposta.palavra){  /// Acertou uma RESPOSTA /////
                     resposta.pos.forEach(idpos => {
-                        document.getElementById(idpos).classList.add("text-green-500");
-                        document.getElementById(idpos).disabled = true;
-
-                        
+                        document.getElementById("PC"+idpos).classList.add("text-green-500");
+                        document.getElementById("PC"+idpos).disabled = true;
                     });
 
                     Game.acertos += 1;
