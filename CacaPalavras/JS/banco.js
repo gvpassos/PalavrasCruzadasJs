@@ -1,4 +1,7 @@
-var Nome = (document.getElementsByClassName("published")[0].innerHTML ? document.getElementsByClassName("published")[0].innerHTML : document.getElementsByClassName("published")[1].innerHTML) + "CacaPalavras";
+var Nome = 
+(document.getElementsByClassName("published")[0].innerHTML ?
+ document.getElementsByClassName("published")[0].innerHTML : 
+ document.getElementsByClassName("published")[0].dateTime ) + "CacaPalavras";
 
 export function SalvarLocal(resposta,pos,acertos,tempo){
     let map = {palavras:[]};

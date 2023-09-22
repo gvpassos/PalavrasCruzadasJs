@@ -1,4 +1,7 @@
-var Nome = (document.getElementsByClassName("published")[0].innerHTML ? document.getElementsByClassName("published")[0].innerHTML : document.getElementsByClassName("published")[1].innerHTML) + "PalavraCruzadas";
+var Nome = 
+(document.getElementsByClassName("published")[0].innerHTML ?
+ document.getElementsByClassName("published")[0].innerHTML : 
+ document.getElementsByClassName("published")[0].dateTime ) + "PalavraCruzadas";
 
 export function SalvarLocal(resposta,acertos){
     let map = {};
