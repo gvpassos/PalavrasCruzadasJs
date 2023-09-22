@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Palavras Cruzadas</title>
+        <title>Palavras Cruzadas e Caça Palavras</title>
        <meta name="viewport" content="width=device-width, initial-scale=1">
         <html-lang="pt-br">
         
@@ -10,10 +10,13 @@
             <link rel="stylesheet" href="css/tail.css">-->
         <script src="https://cdn.tailwindcss.com"></script>
         <link href="https://fonts.cdnfonts.com/css/alarm-clock" rel="stylesheet">
-        <script type="module">
-            import {Criar, atribuirLetra , CriarIntrucoes, CompletouGame} from "https://gvpassos.github.io/PalavrasCruzadasJs/main.js"
-            import { jaFinalizado } from "https://gvpassos.github.io/PalavrasCruzadasJs/banco.js"
+        <body>
             
+
+        <script type="module">
+            /// Palavras Cruzadas
+            import {Criar, atribuirLetra , CriarIntrucoes} from "./PalavrasCruzadas/JS/main.js"
+
             let letras = {
     //  opcoes //
     "00":"1r",
@@ -37,11 +40,11 @@
 
 };
                 for(let i = 0; i < 10; i++){
-    for(let j = 0; j < 10; j++){
-        if(letras[i+''+j]===undefined)letras[i+""+j] = " ";
-    }
-}
-            var Game ={
+                    for(let j = 0; j < 10; j++){
+                        if(letras[i+''+j]===undefined)letras[i+""+j] = " ";
+                    }
+                }
+            var PalavrasCruzadasObj ={
 
     x:7,y:7,
 
@@ -93,36 +96,91 @@
 
     acertos:0,
 };
+            
 
+            // Caca Palavras
+            import {CriarMapa} from "./CacaPalavras/JS/main.js";
+                var CacaPalavrasObj = {    
+                    x:10, y:10,
 
-           
-            window.onload = function(){
-                document.getElementById("jogo").appendChild(Criar(Game));
-                document.getElementById("instrucoes").appendChild(CriarIntrucoes(Game));
-                atribuirLetra(Game);
+                    respostas:[
+                        {palavra:"aperitivo",pos:["11","12","13","14","15","16","17","18","19"]},
+                        {palavra:"sul",pos:["35","45","55"]},
+                        {palavra:"noticia",pos:["61","62","63","64","65","66","67"]},
 
-                if(jaFinalizado()){
-                    const map =  jaFinalizado()
-                    document.getElementById("cronometro").innerHTML = map["tempo"];
-                    Game.acertos = map['acertos']
-                    if (Game.acertos == Game.repostas.length)CompletouGame();
+                        {palavra:"mais",pos:["32","33","34","35"]},
+                        {palavra:"confianca",pos:["10","20","30","40","50","60","70","80","90"]},
+                    ],
+                    acertos:0
                 }
 
-                
+            window.onload = function(){
+
+            //PALAVRAS CRUZADAS
+                document.getElementById("jogo").appendChild(Criar(PalavrasCruzadasObj));
+                document.getElementById("instrucoes").appendChild(CriarIntrucoes(PalavrasCruzadasObj));
+                atribuirLetra(PalavrasCruzadasObj);
+
+            //CACA PALAVRAS
+                document.getElementById("cacapalavras").appendChild(CriarMapa(CacaPalavrasObj));
+                document.getElementById("abaCacaPalavras").classList.add("hidden");
+                                      
+                let btnAbaPalavrasCruzadas = document.getElementById("btnAbaPalavrasCruzadas");
+                let btnAbaCacaPalavras = document.getElementById("btnAbaCacaPalavras");
+                let abaCacaPalavras = document.getElementById("abaCacaPalavras");
+                let abaPalavrasCruzadas = document.getElementById("abaPalavrasCruzadas");
+
+                btnAbaPalavrasCruzadas.onclick = ()=>{
+                    btnAbaPalavrasCruzadas.classList.remove("bg-slate-200");
+                    btnAbaPalavrasCruzadas.classList.add("border-b-0");
+
+                    btnAbaCacaPalavras.classList.remove("border-b-0");
+                    btnAbaCacaPalavras.classList.add("bg-slate-200");
+
+                    abaPalavrasCruzadas.classList.remove("hidden");
+                    abaCacaPalavras.classList.add("hidden");
+                };
+                btnAbaCacaPalavras.onclick = ()=>{
+                    btnAbaCacaPalavras.classList.remove("bg-slate-200");
+                    btnAbaCacaPalavras.classList.add("border-b-0");
+
+                    document.getElementById("btnAbaPalavrasCruzadas").classList.remove("border-b-0");
+                    document.getElementById("btnAbaPalavrasCruzadas").classList.add("bg-slate-200");
+
+                    abaCacaPalavras.classList.remove("hidden");
+                    abaPalavrasCruzadas.classList.add("hidden");
+                }
+
+            
             }
             
-            
+           
            
                         
         </script>
+        
+    </head>
+    <body>
+        <div class="w-full flex justify-between">
+            <button id="btnAbaPalavrasCruzadas" class="w-1/2 border-2 border-b-0">Palavras Cruzadas</button>
+            <button id="btnAbaCacaPalavras"  class="w-1/2 border-2 bg-slate-200">Caca Palavras</button>
+        </div>
+    <section id="abaPalavrasCruzadas" class="duration-150">
+        <div class="flex items-top flex-wrap">
+            <div id="cronometroPalavrasCruzadas" class="flex-2 text-white bg-black text-center px-4 py-2 m-2 w-full text-xl bold" style="font-family: 'alarm clock'">00:00:00</div>
+            <div id="jogo" class="flex-2 text-gray-700 text-center px-4 py-2 m-2 w-96 relative" ></div>
+            <div id="instrucoes" class="flex-1 text-gray-700 text-center px-4 py-2 m-2"></div>
+        </div>
+    </section>
+    
+    <section id="abaCacaPalavras" class="duration-150">
+        <div class="flex items-top flex-wrap">
+            <div id="cronometroCacaPalavras" class="flex-2 text-white bg-black text-center px-4 py-2 m-2 w-full text-xl bold" style="font-family: 'alarm clock'">00:00:00</div>
+            <div id="cacapalavras" class="flex-2 text-gray-700 text-center py-2 m-1 w-96 relative" ></div>
+        </div>
+    </section>
 
-    <div class="flex items-top flex-wrap">
-        <div id="cronometro" class="flex-2 text-white bg-black text-center px-4 py-2 m-2 w-full text-xl bold" style="font-family: 'alarm clock'">00:00:00</div>
-        <div id="jogo" class="flex-2 text-gray-700 text-center px-4 py-2 m-2 w-96" ></div>
-        <div id="instrucoes" class="flex-1 text-gray-700 text-center px-4 py-2 m-2"></div>
-    </div>
 
-
-    <abbr class="published" itemprop="datePublished dateModified" title="domingo, setembro 17, 2023">domingo, setembro 17, 2023</abbr>
+    <abbr class="published" itemprop="datePublished dateModified" title="domingo, setembro 17, 2026">domingo, setembro 17, 2023</abbr>
 </body>
 </html>

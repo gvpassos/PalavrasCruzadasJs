@@ -1,9 +1,9 @@
-var Nome = document.getElementsByClassName("published")[0].innerHTML ? document.getElementsByClassName("published")[0].innerHTML : document.getElementsByClassName("published")[1].innerHTML;
+var Nome = (document.getElementsByClassName("published")[0].innerHTML ? document.getElementsByClassName("published")[0].innerHTML : document.getElementsByClassName("published")[1].innerHTML) + "CacaPalavras";
 
 export function SalvarLocal(resposta,pos,acertos,tempo){
     let map = {palavras:[]};
     if(localStorage.getItem(Nome))map = JSON.parse(localStorage.getItem(Nome));
-    map['palavras'].push({resposta:resposta,pos:pos,jaAcertou:true});
+    map['palavras'].push({resposta:resposta,pos:pos});
     map['acertos'] = acertos;
     map['tempo'] = tempo;
     console.log(map);
@@ -24,10 +24,13 @@ export function CarregarLocal(id){
     return retorno;
    
 }
-
-
-export function getbanco(){
-    if(localStorage.getItem(Nome)) return JSON.parse(localStorage.getItem(Nome));
+export function getTime(){
+    if(localStorage.getItem(Nome)){
+        let time = JSON.parse(localStorage.getItem(Nome))["tempo"];
+        if(time)            
+            return time;
+        else  return false
+    }
     else return false;
     
 }
@@ -43,6 +46,7 @@ export function somarPontos(resposta){
 
     if(localStorage.getItem(Nome)) map = JSON.parse(localStorage.getItem(Nome));
     else return true;
+    
     for (let i = 0; i < map.palavras.length; i++) {
         if(resposta == map.palavras[i].resposta)
             return false

@@ -1,6 +1,7 @@
 
-import { SalvarLocal, CarregarLocal , getbanco, fimGame,buscarRespostaBanco ,acertosBanco } from "https://gvpassos.github.io/PalavrasCruzadasJs/banco.js";
-import { cronometro, iniciarContagem, pararContagem} from "https://gvpassos.github.io/PalavrasCruzadasJs/cronometro.js";
+import { SalvarLocal, CarregarLocal , getbanco, buscarRespostaBanco ,acertosBanco ,getTime} from "./banco.js";
+import { iniciarContagem, pararContagem , cronometroPalavrasCruzadas} from "./cronometro.js";
+import { completarGame } from "../../msgCompletou.js";
 
 export function Criar(Game){
     let table = document.createElement("table");
@@ -18,7 +19,7 @@ export function Criar(Game){
             let input = document.createElement("input");
 
             input.classList.add("w-10","h-10","text-center","font-bold","uppercase");
-            input.id = i+""+j;
+            input.id =  "PC"+i+j;
 
             td.appendChild(input);
             td.classList.add("w-auto", "h-auto","p-0","border-4","border-slate-200");
@@ -26,7 +27,7 @@ export function Criar(Game){
             input.addEventListener("keyup", (event) => {
                 if(event.target.value.length > 1) event.target.value = event.target.value.substring(0,  1 )
                 onInputPress(event.target.id, Game);
-                if(cronometro == null) iniciarContagem();
+                if(cronometroPalavrasCruzadas == null) iniciarContagem("cronometroPalavrasCruzadas");
               });
             
             input.addEventListener("focus", (event) => {
@@ -42,6 +43,9 @@ export function Criar(Game){
     let creditos = document.createElement('tr')
     creditos.innerHTML = `<td colspan="${Game.x}"><div class="text-slate-200 text-right px-4 text-xs"> Desenvolvido por <a href="https://github.com/gvpassos" target="_blank">@gvpassos disponibilizado no <a href="https://github.com/gvpassos/palavrasCruzadasjs" target="_blank">Github</a></div></td>`;	
     table.appendChild(creditos);
+
+    document.getElementById("cronometroPalavrasCruzadas").innerHTML = getTime()? getTime() : "00:00:00";
+
     return table;
 }
 
@@ -72,7 +76,7 @@ export function CriarIntrucoes(Game){
 export function atribuirLetra(Game){
     for (let i = 0; i < Game.x; i++) {
         for (let j = 0; j < Game.y; j++) {
-            let input =   document.getElementById(i+""+j);
+            let input =   document.getElementById("PC"+i+j);
             let td =   document.getElementById("cell"+i+j);
 
             input.value = " "; 
@@ -154,7 +158,10 @@ export function atribuirLetra(Game){
                     SalvarLocal(resposta,Game.acertos);
 
                         if(Game.acertos == Game.repostas.length){
-                            CompletouGame();
+                            pararContagem();
+                            document.getElementById("jogo").appendChild(
+                                completarGame(document.getElementById("cronometroPalavrasCruzadas").innerHTML)
+                            );
                         }
                     
                 }
@@ -175,37 +182,4 @@ function completarResposta(resposta){
     inputResposta.classList.add("text-green-500");
    
     
-}
-
-
-export function CompletouGame(){  
-    pararContagem();
-
-    let tempo = document.getElementById("cronometro").innerHTML;
-    fimGame(tempo)
-
-    let fim = document.createElement("div");
-    
-    fim.classList.add("w-full", "h-full","p-8","flex","flex-col","items-center","justify-center","fixed","top-10","bottom-10","left-0","z-20");
-
-    fim.innerHTML = 
-    `<div class='text-4xl font-bold border-4 border-slate-900 top-10 fixed bottom-10 w-96 text-center bg-slate-400 text-indigo-900 opacity-75 align-middle inline-block my-4 font-sans' >
-        Parabéns, você acertou todas as respostas! <br> em : ${tempo}
-    </div>`; 
-
-    let btncompartilhar = document.createElement("button");
-    btncompartilhar.classList.add("bg-indigo-900","text-white","p-4","rounded-md","font-bold","border-2","border-slate-900","font-sans","top-2/3","z-30");
-    btncompartilhar.innerHTML = 'Compartilhar seu resultado';
-    btncompartilhar.addEventListener("click", ()=> {Compartilhar(tempo) });
-
-    fim.appendChild(btncompartilhar);
-
-    document.getElementById("cronometro").appendChild(fim);
-    document.getElementById("cronometro").classList.add('flex', 'items-center', 'justify-center','h-8');
-}
-
-
-export function Compartilhar(tempo){
-    if(navigator.share) navigator.share({ title: "Palavras Cruzadas", text: `Completei as Palavras Cruzadas em ${tempo } do Jornal o Aperitivo`,url: window.location.href });
-    else alert("Não foi possível compartilhar, Navegador não suporta o compartilhamento")
 }

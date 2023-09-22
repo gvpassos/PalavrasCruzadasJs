@@ -1,13 +1,12 @@
-export var cronometro = null;
-let contagem = 0;
+export var cronometroCacaPalavras = null;
+let contagemCacaPalavras = 0;
 
 export function iniciarContagem(){
-    contagem = strToTempo(document.getElementById("cronometro").innerHTML);
+    contagemCacaPalavras = strToTempo(document.getElementById("cronometroCacaPalavras").innerHTML);
 
-    cronometro =  setInterval(() => {
-        contagem++;
+    cronometroCacaPalavras =  setInterval(() => {
+        contagemCacaPalavras++;
         atualizarCronometro();
-        console.log(contagem)
     }, 1000);
 }
 export function pararContagem(){
@@ -16,12 +15,12 @@ export function pararContagem(){
 }
 
 function atualizarCronometro(){
-    const horas = Math.floor(contagem / 3600);
-    const minutos = Math.floor((contagem % 3600) / 60);
-    const segundos = contagem % 60;
+    const horas = Math.floor(contagemCacaPalavras / 3600);
+    const minutos = Math.floor((contagemCacaPalavras % 3600) / 60);
+    const segundos = contagemCacaPalavras % 60;
     const tempoFormatado = `${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
     
-    document.getElementById('cronometro').textContent = tempoFormatado;
+    document.getElementById('cronometroCacaPalavras').textContent = tempoFormatado;
     
 }
 

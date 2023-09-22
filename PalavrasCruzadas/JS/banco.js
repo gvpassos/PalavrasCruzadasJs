@@ -1,4 +1,4 @@
-var Nome = document.getElementsByClassName("published")[0].innerHTML;
+var Nome = (document.getElementsByClassName("published")[0].innerHTML ? document.getElementsByClassName("published")[0].innerHTML : document.getElementsByClassName("published")[1].innerHTML) + "PalavraCruzadas";
 
 export function SalvarLocal(resposta,acertos){
     let map = {};
@@ -9,7 +9,7 @@ export function SalvarLocal(resposta,acertos){
         
     }  
     
-    map['tempo'] = document.getElementById("cronometro").innerHTML;
+    map['tempo'] = document.getElementById("cronometroPalavrasCruzadas").innerHTML;
     map['acertos'] = acertos
     localStorage.setItem(Nome, JSON.stringify(map));
 
@@ -31,13 +31,17 @@ export function getbanco(id){
     else return false;
     
 }
-
-
-export function fimGame(tempo){
-    let map = JSON.parse(localStorage.getItem(Nome));
-    map['tempo'] =  tempo;
-    localStorage.setItem(Nome, JSON.stringify(map));
+export function getTime(){
+    if(localStorage.getItem(Nome)){
+        let time = JSON.parse(localStorage.getItem(Nome))["tempo"];
+        if(time)            
+            return time;
+        else  return false
+    }
+    else return false;
+    
 }
+
 
 export function jaFinalizado(){
     let map = {};
