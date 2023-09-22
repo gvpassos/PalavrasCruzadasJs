@@ -49,7 +49,7 @@ export function Criar(Game){
 
     if (Game.acertos == Game.repostas.length){
         table.appendChild(completarGame(getTime()))
-        table.className.add("relative");
+        table.classList.add("relative");
     }
 
     return table;
