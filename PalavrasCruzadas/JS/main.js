@@ -51,6 +51,7 @@ export function Criar(Game){
         table.appendChild(completarGame(getTime()))
         table.className.add("relative");
     }
+
     return table;
 }
 
