@@ -15,9 +15,7 @@ export function completarGame(time){
             btn.onclick = function(){
                 if (navigator.share) { // Verifica se o navegador suporta a API de compartilhamento
                     navigator.share({
-                        title: 'Palavras Cruzadas',
-                        text: 'Eu fiz as Palavras Cruzadas em ' + time + ' do Jornal o Aperitivo tente bater meu tempo em: ',
-                        url: window.location.href
+                        text: `Eu fiz as Palavras Cruzadas em ${time} do Jornal o Aperitivo tente bater meu tempo em: ${window.location.href}`,
                     })
                     .then(() => console.log('Conteúdo compartilhado com sucesso!'))
                     .catch((error) => console.error('Erro ao compartilhar:', error));
