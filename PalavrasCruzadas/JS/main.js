@@ -32,6 +32,9 @@ export function Criar(Game){
             
             input.addEventListener("focus", (event) => {
                 event.target.value = "";
+
+                criarSelecao(event.target,Game);
+
             })
 
             tr.appendChild(td);
@@ -86,6 +89,25 @@ export function CriarIntrucoes(Game){
     divRespostas.classList.add("rotate-180","text-xs");
     instrucoes.appendChild(divRespostas);
     return instrucoes;
+}
+
+function criarSelecao(input,Game)
+{
+    let Numeros = []; 
+    for (let i = 0; i < Game.repostas.length; i++) {
+        for (let j = 0; j < Game.repostas[i].pos.length; j++) {
+            document.getElementById("PC"+Game.repostas[i].pos[j]).classList.remove("bg-yellow-200")
+            console.log(input.id)
+           if("PC"+Game.repostas[i].pos[j] == input.id){
+               Numeros.push(i);
+           }
+        }
+    }
+    for(let j = 0 ;j< Numeros.length;j++){
+        for (let i = 0; i < Game.repostas[Numeros[j]].pos.length; i++) {
+            document.getElementById("PC"+Game.repostas[Numeros[j]].pos[i]).classList.add("bg-yellow-200")
+        }
+    }
 }
 
 export function atribuirLetra(Game){

@@ -38,7 +38,6 @@ export function getTime(){
     
 }
 export function totalAcertos(){
-    let map = {};
     if(localStorage.getItem(Nome)) return JSON.parse(localStorage.getItem(Nome)).acertos;
     else return false;
 }
