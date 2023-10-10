@@ -73,7 +73,7 @@ export function CriarIntrucoes(Game){
         if(buscarRespostaBanco(element)) input.value = element.palavra;
 
         let item = document.createElement("li");
-        item.innerHTML = `<span class="font-bold text-indigo-600">${element.numero}</span> : <span class="flex w-60 text-lg">${element.dica}</span><br>`;
+        item.innerHTML = `<span class="font-bold text-indigo-600">${element.numero}</span> : <span class="flex text-lg">${element.dica}</span><br>`;
         item.appendChild(input);
         item.classList.add("marker:text-indigo-600" ,"mx-4","my-8","text-justify","text-slate-600");
 
@@ -97,7 +97,7 @@ function criarSelecao(input,Game)
     for (let i = 0; i < Game.repostas.length; i++) {
         for (let j = 0; j < Game.repostas[i].pos.length; j++) {
             document.getElementById("PC"+Game.repostas[i].pos[j]).classList.remove("bg-yellow-200")
-            console.log(input.id)
+            console.log(input.id,Game.repostas[i].pos[j])
            if("PC"+Game.repostas[i].pos[j] == input.id){
                Numeros.push(i);
            }
