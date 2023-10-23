@@ -182,7 +182,6 @@ export function atribuirLetra(Game){
                     string += document.getElementById("PC"+idpos).value; ///Recria a palavra da resposta
                 });
 
-                
                 if(string.toLocaleLowerCase() == resposta.palavra){  /// Acertou uma RESPOSTA /////
                     resposta.pos.forEach(idpos => {
                         document.getElementById("PC"+idpos).classList.add("text-green-500");
@@ -202,6 +201,13 @@ export function atribuirLetra(Game){
                     
                 }
 
+                /// Pula para a proxima elula/////
+
+                if(resposta.pos.length-1 >= index) {
+                    document.getElementById("PC"+resposta.pos[index+1]).focus();
+                }
+
+                break;
             }
         }
             
