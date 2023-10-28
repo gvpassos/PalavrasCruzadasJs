@@ -10,6 +10,17 @@ export function Criar(Game){
 
     table.classList.add("p-0","h-auto","w-auto","border-4","border-slate-200");
 
+    let trDica = document.createElement("tr");
+    let tdDica = document.createElement("td");
+    tdDica.colSpan = Game.x;
+    tdDica.classList.add("text-center","h-16");
+    tdDica.id = "dica";
+    
+    trDica.appendChild(tdDica);
+    tbody.appendChild(trDica);
+
+
+
     for (let i = 0; i < Game.x; i++) {
         let tr = document.createElement("tr");
         for (let j = 0; j < Game.y; j++) {
@@ -18,11 +29,11 @@ export function Criar(Game){
             td.classList.add("relative");
             let input = document.createElement("input");
 
-            input.classList.add("w-10","h-10","text-center","font-bold","uppercase","duration-150");
+            input.classList.add("w-8","h-8","text-center","font-bold","uppercase","duration-150");
             input.id =  "PC"+i+j;
 
             td.appendChild(input);
-            td.classList.add("w-10", "h-10","p-0","border-4","border-slate-200");
+            td.classList.add("w-8", "h-8","p-0","border-4","border-slate-200");
 
             input.addEventListener("keyup", (event) => {
                 if(event.target.value.length > 1) event.target.value = event.target.value.substring(0,  1 )
@@ -97,10 +108,13 @@ function criarSelecao(input,Game)
     for (let i = 0; i < Game.repostas.length; i++) {
         for (let j = 0; j < Game.repostas[i].pos.length; j++) {
             document.getElementById("PC"+Game.repostas[i].pos[j]).classList.remove("bg-yellow-200")
-            console.log(input.id,Game.repostas[i].pos[j])
-           if("PC"+Game.repostas[i].pos[j] == input.id){
+            
+            if("PC"+Game.repostas[i].pos[j] == input.id){
                Numeros.push(i);
-           }
+
+               //Adiciona a dica na celula de dica
+               adicionarDica(i,Game);
+            }
         }
     }
     for(let j = 0 ;j< Numeros.length;j++){
@@ -108,6 +122,8 @@ function criarSelecao(input,Game)
             document.getElementById("PC"+Game.repostas[Numeros[j]].pos[i]).classList.add("bg-yellow-200")
         }
     }
+
+
 }
 
 export function atribuirLetra(Game){
@@ -141,22 +157,22 @@ export function atribuirLetra(Game){
 
                 if(Game.letras[i+""+j][separator] == "b"){
                     let seta = document.createElement("div");
-                    seta.classList.add("h-0","w-0","border-x-8","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","bottom-0","mx-3.5","absolute");
+                    seta.classList.add("h-0","w-0","border-x-6","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","bottom-0","mx-3.5","absolute");
                     td.append(seta);            
                     
                 }else if (Game.letras[i+""+j][separator] == "t"){
                     let seta = document.createElement("div");
-                    seta.classList.add("h-0","w-0","border-x-8","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","top-0","mx-3.5","absolute","rotate-180");
+                    seta.classList.add("h-0","w-0","border-x-6","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","top-0","mx-3.5","absolute","rotate-180");
                     td.append(seta);      
                     
                 }else if(Game.letras[i+""+j][separator] == "l"){
                     let seta = document.createElement("div");
-                    seta.classList.add("h-0","w-0","border-x-8","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","left-0","top-0","my-4","absolute","rotate-90");
+                    seta.classList.add("h-0","w-0","border-x-6","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","left-0","top-0","my-4","absolute","rotate-90");
                     td.append(seta);      
                   
                 }else if(Game.letras[i+""+j][separator] == "r"){
                     let seta = document.createElement("div");
-                    seta.classList.add("h-0","w-0","border-x-8","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","right-0","top-0","my-4","absolute","-rotate-90");
+                    seta.classList.add("h-0","w-0","border-x-6","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","right-0","top-0","my-4","absolute","-rotate-90");
                     td.append(seta);   
                     
                 }
@@ -224,4 +240,12 @@ function completarResposta(resposta){
     inputResposta.classList.add("text-green-500");
    
     
+}
+
+function adicionarDica(index,Game){
+    let dica = document.getElementById("dica");
+
+
+    dica.innerHTML =  ` ${Game.repostas[index].numero}: ${Game.repostas[index].dica}`;
+
 }
