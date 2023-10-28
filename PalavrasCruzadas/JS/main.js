@@ -22,7 +22,7 @@ export function Criar(Game){
             input.id =  "PC"+i+j;
 
             td.appendChild(input);
-            td.classList.add("w-10", "h-10","p-0","border-4","border-slate-200");
+            td.classList.add("w-8", "h-8","p-0","border-4","border-slate-200");
 
             input.addEventListener("keyup", (event) => {
                 if(event.target.value.length > 1) event.target.value = event.target.value.substring(0,  1 )
