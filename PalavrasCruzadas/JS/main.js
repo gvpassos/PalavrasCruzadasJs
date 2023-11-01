@@ -157,22 +157,22 @@ export function atribuirLetra(Game){
 
                 if(Game.letras[i+""+j][separator] == "b"){
                     let seta = document.createElement("div");
-                    seta.classList.add("h-0","w-0","border-x-6","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","bottom-0","mx-3.5","absolute");
+                    seta.classList.add("h-0","w-0","border-x-8","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","bottom-0","mx-3.5","absolute");
                     td.append(seta);            
                     
                 }else if (Game.letras[i+""+j][separator] == "t"){
                     let seta = document.createElement("div");
-                    seta.classList.add("h-0","w-0","border-x-6","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","top-0","mx-3.5","absolute","rotate-180");
+                    seta.classList.add("h-0","w-0","border-x-8","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","top-0","mx-3.5","absolute","rotate-180");
                     td.append(seta);      
                     
                 }else if(Game.letras[i+""+j][separator] == "l"){
                     let seta = document.createElement("div");
-                    seta.classList.add("h-0","w-0","border-x-6","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","left-0","top-0","my-4","absolute","rotate-90");
+                    seta.classList.add("h-0","w-0","border-x-8","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","left-0","top-0","my-4","absolute","rotate-90");
                     td.append(seta);      
                   
                 }else if(Game.letras[i+""+j][separator] == "r"){
                     let seta = document.createElement("div");
-                    seta.classList.add("h-0","w-0","border-x-6","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","right-0","top-0","my-4","absolute","-rotate-90");
+                    seta.classList.add("h-0","w-0","border-x-8","border-x-transparent","border-t-[8px]","border-b-transparent","border-slate-50","z-10","right-0","top-0","my-4","absolute","-rotate-90");
                     td.append(seta);   
                     
                 }
