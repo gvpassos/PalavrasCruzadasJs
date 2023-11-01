@@ -61,7 +61,7 @@ export function Criar(Game){
 
     document.getElementById("cronometroPalavrasCruzadas").innerHTML = getTime()? getTime() : "00:00:00";
 
-    if (Game.acertos == Game.repostas.length){
+    if (Game.acertos == Game.respostas.length){
         table.appendChild(completarGame(getTime()))
         table.classList.add("relative");
     }
@@ -75,7 +75,7 @@ export function CriarIntrucoes(Game){
     let string = "";
     let divRespostas = document.createElement("div");
 
-    Game.repostas.forEach(element => {
+    Game.respostas.forEach(element => {
         let input = document.createElement("input");
         input.id = `resposta${element.numero}`;
         input.disabled = true;
