@@ -105,11 +105,11 @@ export function CriarIntrucoes(Game){
 function criarSelecao(input,Game)
 {
     let Numeros = []; 
-    for (let i = 0; i < Game.repostas.length; i++) {
-        for (let j = 0; j < Game.repostas[i].pos.length; j++) {
-            document.getElementById("PC"+Game.repostas[i].pos[j]).classList.remove("bg-yellow-200")
+    for (let i = 0; i < Game.respostas.length; i++) {
+        for (let j = 0; j < Game.respostas[i].pos.length; j++) {
+            document.getElementById("PC"+Game.respostas[i].pos[j]).classList.remove("bg-yellow-200")
             
-            if("PC"+Game.repostas[i].pos[j] == input.id){
+            if("PC"+Game.respostas[i].pos[j] == input.id){
                Numeros.push(i);
 
                //Adiciona a dica na celula de dica
@@ -118,8 +118,8 @@ function criarSelecao(input,Game)
         }
     }
     for(let j = 0 ;j< Numeros.length;j++){
-        for (let i = 0; i < Game.repostas[Numeros[j]].pos.length; i++) {
-            document.getElementById("PC"+Game.repostas[Numeros[j]].pos[i]).classList.add("bg-yellow-200")
+        for (let i = 0; i < Game.respostas[Numeros[j]].pos.length; i++) {
+            document.getElementById("PC"+Game.respostas[Numeros[j]].pos[i]).classList.add("bg-yellow-200")
         }
     }
 
@@ -189,7 +189,7 @@ export function atribuirLetra(Game){
 
  function onInputPress(id,Game){
    
-    Game.repostas.forEach(resposta => {// verifica em todas as respostas 
+    Game.respostas.forEach(resposta => {// verifica em todas as respostas 
         let index;
         for (index = 0; index < resposta.pos.length; index++) {/// verifica em todas as posições de cada resposta
             if("PC"+resposta.pos[index] == id){// verifica se a posição é igual a id da célula
@@ -208,7 +208,7 @@ export function atribuirLetra(Game){
                     completarResposta(resposta);
                     SalvarLocal(resposta,Game.acertos,document.getElementById("cronometroPalavrasCruzadas").innerHTM);
 
-                        if(Game.acertos == Game.repostas.length){
+                        if(Game.acertos == Game.respostas.length){
                             pararContagem();
                             document.getElementById("jogo").appendChild(
                                 completarGame(document.getElementById("cronometroPalavrasCruzadas").innerHTML)
@@ -246,6 +246,6 @@ function adicionarDica(index,Game){
     let dica = document.getElementById("dica");
 
 
-    dica.innerHTML =  ` ${Game.repostas[index].numero}: ${Game.repostas[index].dica}`;
+    dica.innerHTML =  ` ${Game.respostas[index].numero}: ${Game.respostas[index].dica}`;
 
 }
